@@ -5,8 +5,10 @@ import com.thoughtworks.todolist.entity.TodoListItem;
 
 import java.util.List;
 
-public interface TodolistService {
+public interface TodoListService {
     List<TodoListItem> getAllTodoList();
 
     TodoListItem addTodoList(TodoListRequest todoListRequest);
+
+    TodoListItem updateTodoListItem(Integer id, TodoListRequest todoListRequest);
 }
