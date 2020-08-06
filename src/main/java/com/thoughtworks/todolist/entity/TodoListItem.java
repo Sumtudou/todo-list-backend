@@ -1,6 +1,7 @@
 package com.thoughtworks.todolist.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "todolist")
@@ -35,5 +36,19 @@ public class TodoListItem {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoListItem that = (TodoListItem) o;
+        return Objects.equals(content, that.content) &&
+                Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, content, status);
     }
 }

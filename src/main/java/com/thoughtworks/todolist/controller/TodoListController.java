@@ -2,7 +2,9 @@ package com.thoughtworks.todolist.controller;
 
 import com.thoughtworks.todolist.dto.TodoListRequest;
 import com.thoughtworks.todolist.entity.TodoListItem;
+import com.thoughtworks.todolist.exception.TodoListAddErrorException;
 import com.thoughtworks.todolist.exception.TodoListNotFoundException;
+import com.thoughtworks.todolist.exception.TodoListUpdateErrorException;
 import com.thoughtworks.todolist.service.TodoListService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +27,13 @@ public class TodoListController {
     }
 
     @PostMapping()
-    public TodoListItem addTodoList(@RequestBody @Valid TodoListRequest todoListRequest){
+    public TodoListItem addTodoList(@RequestBody @Valid TodoListRequest todoListRequest) throws TodoListAddErrorException {
         return todoListService.addTodoList(todoListRequest);
     }
 
     @PutMapping("/{id}")
     public TodoListItem updateTodoListItem(@PathVariable Integer id,
-                                           @RequestBody @Valid TodoListRequest todoListRequest){
+                                           @RequestBody @Valid TodoListRequest todoListRequest) throws TodoListUpdateErrorException {
         return todoListService.updateTodoListItem(id,todoListRequest);
     }
 

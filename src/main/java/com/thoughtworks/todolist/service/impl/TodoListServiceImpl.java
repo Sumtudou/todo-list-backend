@@ -2,7 +2,9 @@ package com.thoughtworks.todolist.service.impl;
 
 import com.thoughtworks.todolist.dto.TodoListRequest;
 import com.thoughtworks.todolist.entity.TodoListItem;
+import com.thoughtworks.todolist.exception.TodoListAddErrorException;
 import com.thoughtworks.todolist.exception.TodoListNotFoundException;
+import com.thoughtworks.todolist.exception.TodoListUpdateErrorException;
 import com.thoughtworks.todolist.repository.TodoListRepository;
 import com.thoughtworks.todolist.service.TodoListService;
 import org.springframework.beans.BeanUtils;
@@ -21,18 +23,23 @@ public class TodoListServiceImpl implements TodoListService {
     }
 
     @Override
-    public TodoListItem addTodoList(TodoListRequest todoListRequest) {
+    public TodoListItem addTodoList(TodoListRequest todoListRequest) throws TodoListAddErrorException {
         TodoListItem todoListItem = new TodoListItem();
         BeanUtils.copyProperties(todoListRequest,todoListItem);
-        return todolistRepository.save(todoListItem);
+        TodoListItem savedItem =  todolistRepository.save(todoListItem);
+        return todolistRepository.findById(savedItem.getId()).orElseThrow(TodoListAddErrorException::new);
     }
 
     @Override
-    public TodoListItem updateTodoListItem(Integer id, TodoListRequest todoListRequest) {
+    public TodoListItem updateTodoListItem(Integer id, TodoListRequest todoListRequest) throws TodoListUpdateErrorException {
         TodoListItem todoListItem = new TodoListItem();
         BeanUtils.copyProperties(todoListRequest,todoListItem);
         todoListItem.setId(id);
-        return todolistRepository.save(todoListItem);
+        TodoListItem savedItem = todolistRepository.save(todoListItem);
+        if(todoListItem.equals(savedItem)){
+            throw new TodoListUpdateErrorException();
+        }
+        return savedItem;
     }
 
     @Override
