@@ -32,9 +32,11 @@ public class TodoListController {
     public TodoListItem updateTodoListItem(@PathVariable Integer id,
                                            @RequestBody @Valid TodoListRequest todoListRequest){
         return todoListService.updateTodoListItem(id,todoListRequest);
-
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteTodoListItem(@PathVariable Integer id){
+        todoListService.deleteTodoListItem(id);
+    }
 
 }

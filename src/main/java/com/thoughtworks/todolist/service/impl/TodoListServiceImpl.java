@@ -33,4 +33,9 @@ public class TodoListServiceImpl implements TodoListService {
         todoListItem.setId(id);
         return todolistRepository.save(todoListItem);
     }
+
+    @Override
+    public void deleteTodoListItem(Integer id) {
+        todolistRepository.deleteById(id);
+    }
 }

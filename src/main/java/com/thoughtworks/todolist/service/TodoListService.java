@@ -11,4 +11,6 @@ public interface TodoListService {
     TodoListItem addTodoList(TodoListRequest todoListRequest);
 
     TodoListItem updateTodoListItem(Integer id, TodoListRequest todoListRequest);
+
+    void deleteTodoListItem(Integer id);
 }
