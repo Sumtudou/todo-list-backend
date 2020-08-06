@@ -1,0 +1,8 @@
+CREATE TABLE todolist (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  content VARCHAR(100) NOT NULL,
+  status BOOLEAN NOT NULL
+);
+
+
+
