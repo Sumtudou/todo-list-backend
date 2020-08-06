@@ -2,6 +2,7 @@ package com.thoughtworks.todolist.service.impl;
 
 import com.thoughtworks.todolist.dto.TodoListRequest;
 import com.thoughtworks.todolist.entity.TodoListItem;
+import com.thoughtworks.todolist.exception.TodoListNotFoundException;
 import com.thoughtworks.todolist.repository.TodoListRepository;
 import com.thoughtworks.todolist.service.TodoListService;
 import org.springframework.beans.BeanUtils;
@@ -35,7 +36,9 @@ public class TodoListServiceImpl implements TodoListService {
     }
 
     @Override
-    public void deleteTodoListItem(Integer id) {
+    public String deleteTodoListItem(Integer id) throws TodoListNotFoundException {
+        todolistRepository.findById(id).orElseThrow(TodoListNotFoundException::new);
         todolistRepository.deleteById(id);
+        return "success delete";
     }
 }

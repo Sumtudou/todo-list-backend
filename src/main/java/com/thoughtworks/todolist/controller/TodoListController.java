@@ -2,6 +2,7 @@ package com.thoughtworks.todolist.controller;
 
 import com.thoughtworks.todolist.dto.TodoListRequest;
 import com.thoughtworks.todolist.entity.TodoListItem;
+import com.thoughtworks.todolist.exception.TodoListNotFoundException;
 import com.thoughtworks.todolist.service.TodoListService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +36,8 @@ public class TodoListController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTodoListItem(@PathVariable Integer id){
-        todoListService.deleteTodoListItem(id);
+    public String deleteTodoListItem(@PathVariable Integer id)throws TodoListNotFoundException {
+        return todoListService.deleteTodoListItem(id);
     }
 
 }
