@@ -33,8 +33,8 @@ public class TodoListController {
 
     @PutMapping("/{id}")
     public TodoListItem updateTodoListItem(@PathVariable Integer id,
-                                           @RequestBody @Valid TodoListRequest todoListRequest) throws TodoListUpdateErrorException {
-        return todoListService.updateTodoListItem(id,todoListRequest);
+                                           @RequestBody TodoListItem todoListItem) throws TodoListUpdateErrorException {
+        return todoListService.updateTodoListItem(id,todoListItem);
     }
 
     @DeleteMapping("/{id}")

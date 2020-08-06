@@ -13,7 +13,7 @@ public interface TodoListService {
 
     TodoListItem addTodoList(TodoListRequest todoListRequest) throws TodoListAddErrorException;
 
-    TodoListItem updateTodoListItem(Integer id, TodoListRequest todoListRequest) throws TodoListUpdateErrorException;
+    TodoListItem updateTodoListItem(Integer id, TodoListItem todoListItem) throws TodoListUpdateErrorException;
 
     String deleteTodoListItem(Integer id) throws TodoListNotFoundException;
 }
