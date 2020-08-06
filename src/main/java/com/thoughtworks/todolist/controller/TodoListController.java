@@ -1,7 +1,6 @@
 package com.thoughtworks.todolist.controller;
 
-import com.thoughtworks.todolist.entity.Employee;
-import com.thoughtworks.todolist.entity.Todolist;
+import com.thoughtworks.todolist.entity.TodoList;
 import com.thoughtworks.todolist.service.TodolistService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,15 +9,15 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/todos")
-public class TodolistController {
+public class TodoListController {
     private final TodolistService todolistService;
 
-    public TodolistController(TodolistService todolistService) {
+    public TodoListController(TodolistService todolistService) {
         this.todolistService = todolistService;
     }
 
     @GetMapping()
-    public List<Todolist> getAllTodoList() {
+    public List<TodoList> getAllTodoList() {
         return todolistService.getAllTodoList();
     }
 
