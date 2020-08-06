@@ -1,9 +1,12 @@
 package com.thoughtworks.todolist.service;
 
-import com.thoughtworks.todolist.entity.TodoList;
+import com.thoughtworks.todolist.dto.TodoListRequest;
+import com.thoughtworks.todolist.entity.TodoListItem;
 
 import java.util.List;
 
 public interface TodolistService {
-    List<TodoList> getAllTodoList();
+    List<TodoListItem> getAllTodoList();
+
+    TodoListItem addTodoList(TodoListRequest todoListRequest);
 }

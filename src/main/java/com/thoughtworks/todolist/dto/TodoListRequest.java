@@ -1,28 +1,15 @@
-package com.thoughtworks.todolist.entity;
+package com.thoughtworks.todolist.dto;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "todolist")
-public class TodoList {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class TodoListRequest {
 
-    @NotNull
+    @NotBlank
     private String content;
 
     @NotNull
     private Boolean status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getContent() {
         return content;
@@ -40,3 +27,4 @@ public class TodoList {
         this.status = status;
     }
 }
+
